@@ -61,30 +61,30 @@ This command will:
 - `Get_IBD_Metrics.py`: Recursively fetches and cleans half-IBD pair metrics from MySQL/MongoDB sources.
       Returns a dataframe and outputs it as csv:
 
-      | id1    | id2    | ibd_sum | ibd_n | ibd_max |
-      |--------|--------|---------|-------|---------|
-      | aa1111 | ee5555 | 3602.82 | 79    | 242.506 |
-      | cc3333 | bb2222 | 2063.54 | 24    | 229.148 |
-      | cc3333 | dd4444 | 3545.64 | 23    | 283.677 |
+    | id1    | id2    | ibd_sum | ibd_n | ibd_max |
+    |--------|--------|---------|-------|---------|
+    | aa1111 | ee5555 | 3602.82 | 79    | 242.506 |
+    | cc3333 | bb2222 | 2063.54 | 24    | 229.148 |
+    | cc3333 | dd4444 | 3545.64 | 23    | 283.677 |
 
 - `Get_Metadata.py`: Retrieves sample metadata from MongoDB, computes age, reconciles gender, and merges haplogroups.
       Retruns a dataframe and outputs it as a csv:
 
-      | full_name                | age | meta_gender | patient_id | tube_id | MT_hap_apex | Y_hap_apex |
-      |--------------------------|-----|-------------|------------|---------|-------------|------------|
-      | surname name middleName  | 34  | Male        | 11111      | aa1111  | T1A1N       | N-TAT      |
-      | surname name middleName  | 53  | Female      | 22222      | bb2222  | T1A1N       |            |
-      | surname name middleName  | 8   | Female      | 33333      | cc3333  | H5E1        |            |
+    | full_name                | age | meta_gender | patient_id | tube_id | MT_hap_apex | Y_hap_apex |
+    |--------------------------|-----|-------------|------------|---------|-------------|------------|
+    | surname name middleName  | 34  | Male        | 11111      | aa1111  | T1A1N       | N-TAT      |
+    | surname name middleName  | 53  | Female      | 22222      | bb2222  | T1A1N       |            |
+    | surname name middleName  | 8   | Female      | 33333      | cc3333  | H5E1        |            |
 
 - `Merge_Metadata_IBD.py`: Merges metadata (twice) into IBD metrics DataFrame and writes the merged CSV.
 - `Get_FamilyTree.py`: Constructs an ordered, deduplicated family-tree table of relatives from genealogical cards and trees.
       Returns a dataframe and outputs it as a csv:
 
-      | full_name                 | tubeId  | patientId | id     | spouse1    | parent1     | parent2      | child1     |
-      |---------------------------|---------|-----------|--------|------------|-------------|--------------|------------|
-      | surname name middleName   | aa1111  | 11111     | XxXxXx |            | XxXxXx      | XxXxXx       |            |
-      | surname name middleName   | bb2222  | 22222     | XxXxXx | XxXxXx     | XxXxXx      | XxXxXx       | XxXxXx     |
-      | surname name middleName   | cc3333  | 33333     | XxXxXx | XxXxXx     | XxXxXx      | XxXxXx       | XxXxXx     |
+    | full_name                 | tubeId  | patientId | id     | spouse1    | parent1     | parent2      | child1     |
+    |---------------------------|---------|-----------|--------|------------|-------------|--------------|------------|
+    | surname name middleName   | aa1111  | 11111     | XxXxXx |            | XxXxXx      | XxXxXx       |            |
+    | surname name middleName   | bb2222  | 22222     | XxXxXx | XxXxXx     | XxXxXx      | XxXxXx       | XxXxXx     |
+    | surname name middleName   | cc3333  | 33333     | XxXxXx | XxXxXx     | XxXxXx      | XxXxXx       | XxXxXx     |
 
 
 - `Subset_FamilyTree.py`: Filters the full family tree to include only up to grandparents, ensuring minimal dataset for inference.
@@ -93,12 +93,12 @@ This command will:
 - `main.py`: Orchestrates the full pipeline, handles arguments, logging, and output management.
       Outputs and logs a pedigree table (method: corrected from family tree, ibd-only):
 
-      | id1    | id2    | ibd_sum | ibd_n | pedigree               | method    | reason                                                       |
-      |--------|--------|---------|-------|------------------------|-----------|--------------------------------------------------------------|
-      | aa1111 | ee5555 | 3602.82 | 79    | full_siblings          | corrected | Shared both parents (bb2222 & ff6666) in tree                |
-      | cc3333 | bb2222 | 2063.54 | 24    | grandparent-grandchild | corrected | Tree shows bb2222 is grandfather of cc3333                   |
-      | cc3333 | dd4444 | 3545.64 | 23    | parent-child           | corrected | Tree shows dd4444 is mother of cc3333                        |
-      | cc3333 | ee5555 | 1909.75 | 47    | uncle-niece            | corrected | Tree shows ee5555 is cc3333’s paternal uncle                 |
+    | id1    | id2    | ibd_sum | ibd_n | pedigree               | method    | reason                                                       |
+    |--------|--------|---------|-------|------------------------|-----------|--------------------------------------------------------------|
+    | aa1111 | ee5555 | 3602.82 | 79    | full_siblings          | corrected | Shared both parents (bb2222 & ff6666) in tree                |
+    | cc3333 | bb2222 | 2063.54 | 24    | grandparent-grandchild | corrected | Tree shows bb2222 is grandfather of cc3333                   |
+    | cc3333 | dd4444 | 3545.64 | 23    | parent-child           | corrected | Tree shows dd4444 is mother of cc3333                        |
+    | cc3333 | ee5555 | 1909.75 | 47    | uncle-niece            | corrected | Tree shows ee5555 is cc3333’s paternal uncle                 |
 
     and a JSON dictionary:
 
